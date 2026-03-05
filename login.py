@@ -55,9 +55,11 @@ def sesion():
             break
         else:
             intentos= 2-i
-            print("contraseña incorrecta")
+            print("\033[31m❌contraseña incorrecta\033[0m")
+            rint(f"\033[33m⚠️ Te quedan {intentos} intentos\033[0m")
+
             
         
         if i==2:
-            print("fuiste bloqueado")
+            print("\033[1;31m🚫 ACCESO BLOQUEADO\033[0m")
             break

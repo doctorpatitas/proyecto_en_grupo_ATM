@@ -36,4 +36,16 @@ def retirar_dinero(usuarios[registrar_user]["saldo"]):
     except: ValueError
     print("dato invalido. debe ingresar un numero.")
 
+    def ver_historial(usuarios, registrar_user):
+    
+    historial = usuarios[registrar_user]["historial"]
+    
+    if len(historial) == 0:
+        print("No hay movimientos registrados.")
+    else:
+        print("\n--- Historial de movimientos ---")
+        for movimiento in historial:
+            print(movimiento)
 
+def salir():
+    print("Gracias por usar el cajero automático.")

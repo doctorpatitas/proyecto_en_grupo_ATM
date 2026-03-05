@@ -20,4 +20,20 @@ def retirar_dinero(usuarios[registrar_user]["saldo"]):
     except: ValueError
     print("dato invalido. debe ingresar un numero.")
 
+    def depositar_dinero(usuarios[registrar_user]["saldo"]):
+    try:
+        monto = float(input("ingresa el monto a depositar: "))
+
+        if monto <0:
+            print("El monto no puede ser negativo")
+
+        usuarios[registrar_user]["saldo"] + monto
+
+        usuarios[registrar_user]["historial"].append(f"Depósito: +${monto}")
+
+        print("desposito existoso.")
+
+    except: ValueError
+    print("dato invalido. debe ingresar un numero.")
+
 

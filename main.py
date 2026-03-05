@@ -11,7 +11,7 @@ MENU_LOGIN = """
 ##Funcionalidad del MENU_LOGIN.
 def menu1 ():
     while True:
-        ##Mostrar menu
+        ##Mostrar menu de registro
         print(MENU_LOGIN)
 
         ##Variable que guarda la opción que escoja el usuario.
@@ -26,6 +26,9 @@ def menu1 ():
                 break
             case _: ##Caso de error.
                 print("Opción invalida. Intentelo de nuevo.")
+                continue
+
+menu1()
 
 
 ##Segundo menu que le aparece al usuario.
@@ -45,7 +48,11 @@ cantidad_movimientos = int(input("Cuantos movimientos desea hacer. \n"))
 
 ##Funcionalidad del MENU_MOVIMIENTOS.
 def menu2 ():
-    while True:
+    for i in range(cantidad_movimientos):
+        ##Mostrar menu de movimientos
+        print(MENU_MOVIMIENTOS)
+
+
         ##Variable que guarda que movimientos desea hacer el usuario
         movimientos = input("Escoja una opción. \n")
         match movimientos:
@@ -62,6 +69,7 @@ def menu2 ():
             case _: ##Caso de error
                 print("Opción invalida. Intentelo de nuevo.")
 
+menu2()
 
 ##Mensaje de despedida.
 print("Gracias por usar el cajero automático.")

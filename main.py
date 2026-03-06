@@ -1,3 +1,8 @@
+##Importaciones
+import login
+import funciones2
+
+
 ##Primer menu que le aparece al usuario.
 MENU_LOGIN = """
 ==============
@@ -19,16 +24,16 @@ def menu1 ():
 
         match menu_registro:
             case "1": ##Registrarse.
-                pass
+                login.registrar()
             case "2": ##Iniciar sesión.
-                pass
+                user = login.sesion()
+                if user:
+                    menu2(user)
             case "3": ##Salir.
                 break
             case _: ##Caso de error.
                 print("Opción invalida. Intentelo de nuevo.")
                 continue
-
-menu1()
 
 
 ##Segundo menu que le aparece al usuario.
@@ -43,11 +48,16 @@ MENU_MOVIMIENTOS = """
 5. --> Salir."""
 
 
-##Variable que controla cuantos movimientos desea hacer el usuario.
-cantidad_movimientos = int(input("Cuantos movimientos desea hacer. \n"))
-
 ##Funcionalidad del MENU_MOVIMIENTOS.
-def menu2 ():
+def menu2 (user):
+    ##Variable que controla cuantos movimientos desea hacer el usuario.
+    while True:
+        try:
+            cantidad_movimientos = int(input("Cuantos movimientos desea hacer. \n"))
+            break
+        except ValueError:
+            print("Ingrese un número valido.")
+
     for i in range(cantidad_movimientos):
         ##Mostrar menu de movimientos
         print(MENU_MOVIMIENTOS)
@@ -57,19 +67,22 @@ def menu2 ():
         movimientos = input("Escoja una opción. \n")
         match movimientos:
             case "1": ##Consultar saldo
-                pass
+                print(funciones2.consulta_tu_saldo(login.usuarios, user))
             case "2": ##Retirar saldo
-                pass
+                funciones2.retirar_dinero(login.usuarios, user)
             case "3": ##Depositar saldo
-                pass
+                funciones2.depositar_dinero(login.usuarios, user)
             case "4": ##Historial de movimientos
-                pass
+                funciones2.ver_historial(login.usuarios, user)
             case "5": ##Salir
                 break
             case _: ##Caso de error
                 print("Opción invalida. Intentelo de nuevo.")
 
-menu2()
+
+##Llamar a la primera función
+menu1()
+
 
 ##Mensaje de despedida.
 print("Gracias por usar el cajero automático.")

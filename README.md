@@ -12,9 +12,9 @@ Permite a los usuarios registrarse, iniciar sesión y realizar operaciones como:
 
 La información de los usuarios se guarda en un archivo JSON para mantener los datos incluso después de cerrar el programa.
 
-## funcionalidades
+## Funcionalidades
 - ### Registra usuarios
-#### registra
+#### Registra
 ```
 registrar_user=input("favor ingrese el nombre de usuario que desea registrar:  ")
 
@@ -69,14 +69,14 @@ guardar_usuarios(usuarios)
 
 >Finalmente se llama a la función `guardar_usuarios()` para almacenar la información en el archivo JSON.
 ---
-- ### inicio de sesion
+- ### Inicio de sesion
 #### Control de intentos
 ```
 for i in range(3):
 ```
 >Se inicia un bucle que permite al usuario intentar iniciar sesión hasta tres veces antes de bloquear el acceso.
 
-#### solicitud de credenciales 
+#### Solicitud de credenciales 
 ```
 user = input("ingrese el nombre al que se quiere logear: ")
 pas = input("ingrese el PIN asociado: ")
@@ -108,7 +108,7 @@ else:
 >Una vez los intentos llegen a 0 se le bloquea el acceso al usuario, finalisando su proceso de inico de sesion
 ---
 
-- ### depositos
+- ### Depositos
 #### Solicitud del monto a depositar
 ```
 monto = float(input("ingresa el monto a depositar: "))
@@ -140,7 +140,7 @@ except ValueError:
 ```
 >El sistema detecta entradas inválidas (por ejemplo texto) y muestra un mensaje indicando que se debe ingresar un número.
 ---
-- ### retiros
+- ### Retiros
 #### Solicitud del monto a retirar
 ```
 monto = float(input("ingresa el monto a retirar: "))
@@ -182,14 +182,14 @@ except ValueError:
 ```
 >El sistema detecta entradas inválidas y muestra un mensaje indicando que se debe ingresar un número.
 ---
-- ### consultar saldo
+- ### Consultar saldo
 ```
 def consulta_tu_saldo(usuarios, user):
     return usuarios[user]["saldo"]
 ```
 >Retorna el saldo actual del usuario almacenado en el diccionario usuarios.
 ---
-- ### consultar historial
+- ### Consultar historial
 #### Obtención del historial
 ```
 historial = usuarios[registrar_user]["historial"]
@@ -231,7 +231,7 @@ import os
 
 >os permite verificar si el archivo usuarios.json existe en el sistema.
 
-#### carga de usuarios desde el archivo
+#### Carga de usuarios desde el archivo
 ```
 def cargar_usuarios():
     if os.path.exists("usuarios.json"):
@@ -288,20 +288,20 @@ usuarios = cargar_usuarios()
 >Se crea la variable usuarios con los datos cargados desde el archivo JSON para que el sistema pueda utilizarlos durante la ejecución.
 ---
 
-## tecnologias
+## Tecnologias
 - Python
 - JSON
 - Git
 - GitHub
 
-## isntalacion 
+## Isntalacion 
 1. clonar el repositorio
 >git clone https://github.com/doctorpatitas/proyecto_en_grupo_ATM.git
 2. entrar en la carpeta
 > cd proyecto_en_grupo_ATM
 3. ejecutar desde main.py
 
-## uso 
+## Uso 
 el usuario vera en consola
 ``` 
 ==============
@@ -517,5 +517,5 @@ proyecto_en_grupo_ATM/
 >5. usuarios.json    (base de datos de usuarios)
 >6. README.md        ( documentación)
 ---
-# gracias por leer
+# Gracias por leer
 

@@ -82,11 +82,18 @@ user = input("ingrese el nombre al que se quiere logear: ")
 pas = input("ingrese el PIN asociado: ")
 ```
 >El sistema solicita al usuario el nombre de la cuenta y el PIN asociado para validar las credenciales.
+#### Verificacion de la contraseña
+```
+ if not pas.isdigit():
+            print("El PIN solo debe tener números.")
+            continue
 
+```
+> Evita que en la contraseña entren letras 
 #### Verificacion de credenciales
 ```
 if user in usuarios and pas == usuarios[user]["pass"]:
- print("te pudiste logear")
+ print("✅Inicio de sesión exitoso")
             return user   # login exitoso
 ```
 >Se verifica si el usuario existe en el diccionario usuarios y si el PIN ingresado coincide con el almacenado. una vez concidan el login sera exitoso
@@ -99,9 +106,10 @@ else:
 
             if intentos > 0:
                 print(f"\033[33m⚠️ Te quedan {intentos} intentos\033[0m")
-            else:
-                print("\033[1;31m🚫 ACCESO BLOQUEADO\033[0m")
-                return None   # login fallido
+                return user
+            if i==2:
+            print("\033[1;31m🚫 ACCESO BLOQUEADO\033[0m")
+            break
 ```
 >cada intento fallido descuenta 1 de los intentos ademas se le da el privilegio al usuario de saber cuantos intentos le quedan. una
 >
@@ -123,20 +131,29 @@ if monto < 0:
 >El sistema valida que el monto ingresado sea válido, evitando depósitos con valores negativos.
 
 #### Actualización del saldo
+```
 usuarios[registrar_user]["saldo"] += monto
 >El monto ingresado se añade al saldo actual del usuario dentro del diccionario usuarios.
-
+```
 #### Registro en el historial
 ```
 usuarios[registrar_user]["historial"].append(f"Depósito: +${monto}")
-print("desposito existoso.")
-```
->La transacción se registra en el historial para mantener un registro de los movimientos realizados. ademas le hace saber al usuario que su deposito fue exitoso
 
+```
+
+>La transacción se registra en el historial para mantener un registro de los movimientos realizados.
+#### Guardado del deposito
+```
+login.guardar_usuarios(usuarios)
+
+        print("Deposito existoso.")
+        return True
+```
 #### Manejo de errores
 ```
 except ValueError:
         print("dato invalido. debe ingresar un numero.")
+        return false
 ```
 >El sistema detecta entradas inválidas (por ejemplo texto) y muestra un mensaje indicando que se debe ingresar un número.
 ---
@@ -151,7 +168,7 @@ monto = float(input("ingresa el monto a retirar: "))
 ```
 if monto <0:
             print("El monto no puede ser negativo")
-            return
+            return false
 ```
 > al ver que el usuario registra un numero negativo le hace saber que no puede ingresar es e monto
 
@@ -159,7 +176,7 @@ if monto <0:
 ```
 if monto > usuarios[user]["saldo"]:
 print("el monto no puede ser mayor al disponible")
-return
+return false
 ```
 >Se valida que el usuario tenga suficiente dinero en su cuenta para realizar el retiro.
 
@@ -174,6 +191,14 @@ usuarios[user]["saldo"] -= monto
 usuarios[user]["historial"].append(f"Retiro: -${monto}")
 ```
 >El sistema registra el retiro en el historial de transacciones del usuario.
+#### Guardado del retiro
+```
+  login.guardar_usuarios(usuarios)
+
+        print("Retiro existoso.")
+        return True
+```
+> Su función es almacenar o actualizar la información de los usuarios que se le pasan como argumento. retornando true
 
 #### Manejo de errores
 ```
@@ -304,25 +329,25 @@ usuarios = cargar_usuarios()
 ## Uso 
 el usuario vera en consola
 ``` 
-==============
-=== CAJERO ===
-==============
-1. --> Registrarse.
-2. --> Iniciar sesión.
-3. --> Salir."""
-
+━━━━━━━━━━━━━━━━━━━━━━━━━
+🏦  TechBank Riwi Digital
+━━━━━━━━━━━━━━━━━━━━━━━━━
+1️⃣ Registrarse.
+2️⃣ Iniciar sesión.
+3️⃣ Salir.
+━━━━━━━━━━━━━━━━━━━━━━━━━"""
 Escoja una opción.
 ``` 
 #
 tendra que registrarse primero
 ``` 
-==============
-=== CAJERO ===
-==============
-1. --> Registrarse.
-2. --> Iniciar sesión.
-3. --> Salir."""
-
+━━━━━━━━━━━━━━━━━━━━━━━━━
+🏦  TechBank Riwi Digital
+━━━━━━━━━━━━━━━━━━━━━━━━━
+1️⃣ Registrarse.
+2️⃣ Iniciar sesión.
+3️⃣ Salir.
+━━━━━━━━━━━━━━━━━━━━━━━━━"""
 Escoja una opción.
 1
 ``` 
@@ -346,25 +371,25 @@ favor ingrersar la contraseña que desea ligar al nombre que registro: 123456
 
 una vez registrado se volvera desplegar el primer menu
 ``` 
-==============
-=== CAJERO ===
-==============
-1. --> Registrarse.
-2. --> Iniciar sesión.
-3. --> Salir."""
-
+━━━━━━━━━━━━━━━━━━━━━━━━━
+🏦  TechBank Riwi Digital
+━━━━━━━━━━━━━━━━━━━━━━━━━
+1️⃣ Registrarse.
+2️⃣ Iniciar sesión.
+3️⃣ Salir.
+━━━━━━━━━━━━━━━━━━━━━━━━━"""
 Escoja una opción.
 ``` 
 #
 el usuario debera escoger la opcion relacionada con el inicio de sesion
 ``` 
-==============
-=== CAJERO ===
-==============
-1. --> Registrarse.
-2. --> Iniciar sesión.
-3. --> Salir."""
-
+━━━━━━━━━━━━━━━━━━━━━━━━━
+🏦  TechBank Riwi Digital
+━━━━━━━━━━━━━━━━━━━━━━━━━
+1️⃣ Registrarse.
+2️⃣ Iniciar sesión.
+3️⃣ Salir.
+━━━━━━━━━━━━━━━━━━━━━━━━━"""
 Escoja una opción.
 2
 ``` 
@@ -387,18 +412,19 @@ ingrese el PIN asociado: 123456
 #
 una vez el usuario se pudo loegear desplegara el menu del cajero donde debera digitar el numero de movimientos que desea hacer
 ``` 
-Cuantos movimientos desea hacer: 3
+Cuantos movimientos desea hacer: 4
 
-==============
-=== CAJERO ===
-==============
-1. --> Consultar saldo.
-2. --> Retirar saldo.
-3. --> Depositar saldo.
-4. --> Ver historial de movimientos
-5. --> Salir."""
-
-Escoja una opción 2
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🏦  TechBank Riwi Digital
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1️⃣ Consultar saldo.
+2️⃣ Retirar dinero.
+3️⃣ Depositar dinero.
+4️⃣ Historial de movimientos.
+5️⃣ Salir.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Escoja una opción
+2
 ``` 
 #
 cada movimiento le enviara a su respectivo menu
@@ -411,83 +437,88 @@ retiro existoso
 una vez el usuario haga su movimiento lo devolvera a el menu del cajero y si este quiere consultar su saldo debera elegir la opcion 1
 ``` 
 
-==============
-=== CAJERO ===
-==============
-1. --> Consultar saldo.
-2. --> Retirar saldo.
-3. --> Depositar saldo.
-4. --> Ver historial de movimientos
-5. --> Salir."""
-
-Escoja una opción 1
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🏦  TechBank Riwi Digital
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1️⃣ Consultar saldo.
+2️⃣ Retirar dinero.
+3️⃣ Depositar dinero.
+4️⃣ Historial de movimientos.
+5️⃣ Salir.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Escoja una opción
+1
 
 ``` 
 #
 y esto le mostrara su saldo actual
 ``` 
- 500 
+ 💰Su saldo actual es $500
 ``` 
 
 #
-cuando el usuario desee ver su saldo
+cuando el usuario desee ver su  historial de movimientos
 ``` 
 
-==============
-=== CAJERO ===
-==============
-1. --> Consultar saldo.
-2. --> Retirar saldo.
-3. --> Depositar saldo.
-4. --> Ver historial de movimientos
-5. --> Salir."""
-
-Escoja una opción 4
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🏦  TechBank Riwi Digital
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1️⃣ Consultar saldo.
+2️⃣ Retirar dinero.
+3️⃣ Depositar dinero.
+4️⃣ Historial de movimientos.
+5️⃣ Salir.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Escoja una opción
+4
 ``` 
 
 #
 aparecera la cantidad de dinero retirado y depositado
 ``` 
 Retiro: -$500.0
-Depósito: +$0.0
+
 ``` 
 
 #
 si al usuario le sobraron movimientos puede escoger la opcion salir
 ``` 
 
-==============
-=== CAJERO ===
-==============
-1. --> Consultar saldo.
-2. --> Retirar saldo.
-3. --> Depositar saldo.
-4. --> Ver historial de movimientos
-5. --> Salir."""
-
-Escoja una opción 5
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🏦  TechBank Riwi Digital
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1️⃣ Consultar saldo.
+2️⃣ Retirar dinero.
+3️⃣ Depositar dinero.
+4️⃣ Historial de movimientos.
+5️⃣ Salir.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Escoja una opción
+5
 ``` 
 
 #
 esto lo de volvera al menu de del login
 ``` 
-==============
-=== CAJERO ===
-==============
-1. --> Registrarse.
-2. --> Iniciar sesión.
-3. --> Salir.
+━━━━━━━━━━━━━━━━━━━━━━━━━
+🏦  TechBank Riwi Digital
+━━━━━━━━━━━━━━━━━━━━━━━━━
+1️⃣ Registrarse.
+2️⃣ Iniciar sesión.
+3️⃣ Salir.
+━━━━━━━━━━━━━━━━━━━━━━━━━"""
 Escoja una opción.
 ``` 
 # 
 si el usuario se siente satisfecho o ya realiso los movimientos que queria puede escoger la opcion salir
 ``` 
-==============
-=== CAJERO ===
-==============
-1. --> Registrarse.
-2. --> Iniciar sesión.
-3. --> Salir.
+━━━━━━━━━━━━━━━━━━━━━━━━━
+🏦  TechBank Riwi Digital
+━━━━━━━━━━━━━━━━━━━━━━━━━
+1️⃣ Registrarse.
+2️⃣ Iniciar sesión.
+3️⃣ Salir.
+━━━━━━━━━━━━━━━━━━━━━━━━━"""
 Escoja una opción.
 3
 ``` 

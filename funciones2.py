@@ -1,43 +1,61 @@
-def consulta_tu_saldo(usuarios[registrar_user]["saldo"]):
-    return usuarios[registrar_user]["saldo"]
+##Importaciones
+import login
 
-def retirar_dinero(usuarios[registrar_user]["saldo"]):
+
+
+def consulta_tu_saldo(usuarios, user):
+    return usuarios[user]["saldo"]
+
+def retirar_dinero(usuarios, user):
     try:
-        monto = float(input("ingresa el monto a retirar: "))
+        monto = float(input("Ingresa el monto a retirar: "))
 
-        if monto <0:
-            print("El monto no puede ser negativo")
+        if monto < 0:
+            print("El monto no puede ser negativo.")
+            return False
 
-        if monto > usuarios[registrar_user]["saldo"]:
-            print("el monto no puede ser mayor al disponible")
+        if monto > usuarios[user]["saldo"]:
+            print("El monto no puede ser mayor al disponible.")
+            return False
         
-        usuarios[registrar_user]["saldo"] - monto
+        usuarios[user]["saldo"] -= monto
 
-        usuarios[registrar_user]["historial"].append(f"Retiro: -${monto}")
+        usuarios[user]["historial"].append(f"Retiro: -${monto}")
 
-        print("retiro existoso.")
+        ##GUARDAR CAMBIOs
+        login.guardar_usuarios(usuarios)
 
-    except: ValueError
-    print("dato invalido. debe ingresar un numero.")
+        print("Retiro existoso.")
+        return True
 
-    def depositar_dinero(usuarios[registrar_user]["saldo"]):
-    try:
-        monto = float(input("ingresa el monto a depositar: "))
+    except ValueError:
+        print("Dato invalido. Debe ingresar un numero.")
+        return False
+
+def depositar_dinero(usuarios, registrar_user):
+    try: 
+        monto = float(input("Ingresa el monto a depositar: "))
 
         if monto <0:
-            print("El monto no puede ser negativo")
+            print("El monto no puede ser negativo.")
+            return False
 
-        usuarios[registrar_user]["saldo"] + monto
+        usuarios[registrar_user]["saldo"] += monto
 
         usuarios[registrar_user]["historial"].append(f"Depósito: +${monto}")
 
-        print("desposito existoso.")
+        ##GUARDAR CAMBIOS
+        login.guardar_usuarios(usuarios)
 
-    except: ValueError
-    print("dato invalido. debe ingresar un numero.")
-
-    def ver_historial(usuarios, registrar_user):
+        print("Deposito existoso.")
+        return True
     
+    except ValueError:
+        print("Dato invalido. Debe ingresar un numero.")
+        return False
+
+def ver_historial(usuarios, registrar_user):
+
     historial = usuarios[registrar_user]["historial"]
     
     if len(historial) == 0:
@@ -47,5 +65,3 @@ def retirar_dinero(usuarios[registrar_user]["saldo"]):
         for movimiento in historial:
             print(movimiento)
 
-def salir():
-    print("Gracias por usar el cajero automático.")

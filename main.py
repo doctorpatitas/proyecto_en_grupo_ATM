@@ -81,7 +81,7 @@ def menu2 (user):
 
         match movimientos:
             case "1": ##Consultar saldo
-                print(funciones2.consulta_tu_saldo(login.usuarios, user))
+                print(f"\n💰Su saldo actual es: ${funciones2.consulta_tu_saldo(login.usuarios, user)}\n")
                 movimientos_restantes -= 1
 
             case "2": ##Retirar saldo
